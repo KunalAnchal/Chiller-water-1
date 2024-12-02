@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Upload</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #f8f9fa;
+        }
+
+        form {
+            text-align: center;
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        button[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        p.error {
+            color: red;
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #f8f9fa;
+        }
+
+        table {
+            margin: 20px auto;
+            width: 80%;
+            border-collapse: collapse;
+            background-color: #212529;
+            color: white;
+        }
+
+        table th, table td {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #343a40;
+        }
+
+        a.btn {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a.btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Retrieve Data and Generate a Plot</h1>
+    <form method="POST" action="/predict">
+        <button type="submit">Fetch Data and Generate Plot</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if graph %}
+        <h2>Distribution of Chilled Water Rate (L/sec) and Prediction</h2>
+        <img src="data:image/png;base64,{{ graph }}" alt="Chilled Water Rate (L/sec) and Prediction">
+    {% endif %}
+
+    {% if data_table %}
+        <h2>Data Table</h2>
+        {{ data_table | safe }}
+    {% endif %}
+
+    {% if excel_file %}
+        <h2>Download Predicted Data</h2>
+        <a href="/download_excel?excel_file={{ excel_file }}" class="btn">Download Excel File</a>
+    {% endif %}
+</body>
+</html>
