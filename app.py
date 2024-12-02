@@ -23,7 +23,7 @@ DATASET_PATH = 'chillerdata.csv'
 INFLUXDB_TOKEN = "Uxh3_M9yNWhCE-Ne9xeMYV_I0-sGXBBF3KELMTLDT8UUmcT__jUxAPVmzKmF-DC58dJvsBFovQwtYxrT5hOWeg=="
 INFLUXDB_ORG = "IIIOT-INFOTECH"
 INFLUXDB_BUCKET = "Machine Learning"
-INFLUXDB_URL = "http://192.168.1.130:8086/"
+INFLUXDB_URL = "http://122.176.92.121:8086/"
 
 # Initialize InfluxDB client with optimized write options
 client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
